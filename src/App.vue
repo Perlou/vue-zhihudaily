@@ -1,28 +1,67 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+  <div class="app-viewport" id="app">
+    <v-side-nav></v-side-nav>
+    <v-tool-bar></v-tool-bar>
+    <router-view></router-view>
+
+    <div class="bottom-bar">
+
+      <md-bottom-bar md-fixed-bottom>
+
+        <md-bottom-bar-item md-icon="history">
+          <router-link to="/home">首页</router-link>
+        </md-bottom-bar-item>
+        <md-bottom-bar-item md-icon="favorite" md-active>
+          <router-link to="/bar">ui库</router-link>
+        </md-bottom-bar-item>
+      </md-bottom-bar>
+    </div>
+
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+  import toolBar from 'src/components/toolBar'
+  import sideNav from 'src/components/sideNav'
 
-export default {
-  name: 'app',
-  components: {
-    Hello
+  export default {
+    name: 'app',
+    data () {
+      return {
+
+      }
+    },
+    components: {
+      'v-tool-bar': toolBar,
+      'v-side-nav': sideNav
+    },
+    methods: {
+      toggleLeftSidenav () {
+        this.$refs.leftSidenav.toggle()
+      }
+    }
   }
-}
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="sass">
+html,
+body,
+.app-viewport
+  height: 100%;
+  overflow: auto;
+
+.app-viewport
+  display: flex;
+  flex-flow: column;
+
+  .md-list
+    overflow: auto;
+
+  .bottom-bar
+    position: fixed;
+    bottom: 0;
+    z-index: 99;
+    width: 100%;
+
+
 </style>
