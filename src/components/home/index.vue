@@ -1,15 +1,22 @@
 <template>
   <md-list class="md-double-line">
-    <md-card>
-      <md-card-media>
-        <img src="../../assets/1.jpg" alt="Her">
-      </md-card-media>
-    </md-card>
+    <div>111</div>
 
     <md-subheader>今日热文</md-subheader>
 
     <!-- stories list -->
-
+    <md-list-item
+      v-for="item in stories"
+      :id="item.id"
+      @click.stop="toDetail(item.id)">
+      <div class="md-list-text-container">
+        {{item.title}}
+      </div>
+      <md-avatar>
+        <img :src="item.images" alt="">
+        <!-- <img src="../../assets/2.jpg" alt=""> -->
+      </md-avatar>
+    </md-list-item>
     <!-- end stories list -->
 <!--     <md-list-item>
       <md-avatar class="md-avatar-icon">
@@ -30,6 +37,9 @@
 </template>
 
 <script>
+  import swiper from 'swiper'
+
+  console.log(swiper)
   export default {
     name: 'home',
     data () {
@@ -42,6 +52,7 @@
       // 热文信息
       this.$http.get('/api/topStory').then(res => {
         let data = res.body.data
+        console.log(data)
         this.stories = data.stories
         this.topStories = data.top_stories
       }).catch(err => {
@@ -49,11 +60,14 @@
       })
     },
     methods: {
-
+      toDetail (detailId) {
+        window.location.href = '#/uiLib'
+      }
     }
   }
 </script>
 
-<style>
+<style lang="sass">
+
 
 </style>

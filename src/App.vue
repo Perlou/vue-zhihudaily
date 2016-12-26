@@ -4,7 +4,7 @@
     <v-tool-bar></v-tool-bar>
     <router-view></router-view>
 
-    <div class="bottom-bar">
+<!--     <div class="bottom-bar">
 
       <md-bottom-bar md-fixed-bottom>
 
@@ -16,7 +16,7 @@
         </md-bottom-bar-item>
       </md-bottom-bar>
     </div>
-
+ -->
   </div>
 </template>
 
@@ -44,6 +44,9 @@
 </script>
 
 <style lang="sass">
+body
+  padding-bottom: 12px;
+
 html,
 body,
 .app-viewport
