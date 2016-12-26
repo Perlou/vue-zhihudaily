@@ -157,7 +157,6 @@
     margin-left: 4%;
     margin-bottom: 12px;
     background-color: #FFFFFF;
-
-
+    box-shadow: 1px 1px 4px rgba(7, 17, 27, 0.3);
 
 </style>
