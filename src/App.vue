@@ -44,8 +44,6 @@
 </script>
 
 <style lang="sass">
-body
-  padding-bottom: 12px;
 
 html,
 body,

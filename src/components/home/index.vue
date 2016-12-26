@@ -1,6 +1,9 @@
 <template>
-  <md-list class="md-double-line">
-    <div>111</div>
+
+  <md-list class="md-double-line" :class="'home-list'">
+    <div class="swiper-container">
+
+    </div>
 
     <md-subheader>今日热文</md-subheader>
 
@@ -8,56 +11,78 @@
     <md-list-item
       v-for="item in stories"
       :id="item.id"
+      :class="'home-list-item'"
       @click.stop="toDetail(item.id)">
       <div class="md-list-text-container">
         {{item.title}}
       </div>
       <md-avatar>
         <img :src="item.images" alt="">
-        <!-- <img src="../../assets/2.jpg" alt=""> -->
       </md-avatar>
     </md-list-item>
     <!-- end stories list -->
-<!--     <md-list-item>
-      <md-avatar class="md-avatar-icon">
-        <md-icon>folder</md-icon>
-      </md-avatar>
 
+    <md-subheader>过往消息({{ getYesterday }})</md-subheader>
+
+    <!-- history stories list -->
+    <md-list-item
+      v-for="item in stories"
+      :id="item.id"
+      :class="'home-list-item'"
+      @click.stop="toDetail(item.id)">
       <div class="md-list-text-container">
-        <span>Photos</span>
-        <p>Jan 9, 2014</p>
+        {{item.title}}
       </div>
-
-      <md-button class="md-icon-button md-list-action">
-        <md-icon>info</md-icon>
-      </md-button>
-    </md-list-item> -->
+      <md-avatar>
+        <img :src="item.images" alt="">
+      </md-avatar>
+    </md-list-item>
+    <!-- end history stories lsit -->
 
   </md-list>
 </template>
 
 <script>
-  import swiper from 'swiper'
+  // import swiper from 'swiper'
+  import * as api from 'src/common/api'
+  import moment from 'moment'
 
-  console.log(swiper)
+  import 'swiper/dist/css/swiper.css'
+
+  // console.log(swiper)
   export default {
     name: 'home',
     data () {
       return {
         stories: [],
-        topStories: []
+        topStories: [],
+        historyStories: [],
+        nowTime: moment().format('x')
       }
     },
     created () {
-      // 热文信息
-      this.$http.get('/api/topStory').then(res => {
-        let data = res.body.data
-        console.log(data)
+      // 获取热文信息
+      api.getLatestStory().then(res => {
+        let data = res.data
         this.stories = data.stories
         this.topStories = data.top_stories
       }).catch(err => {
         console.log(err)
       })
+
+      // 获取过往消息
+      api.getHistoryStory(moment().format('YYYYMMDD')).then(res => {
+        let data = res.data
+        this.historyStories = data.stories
+      }).catch(err => {
+        console.log(err)
+      })
+    },
+    // 计算属性
+    computed: {
+      getYesterday () {
+        return moment(Number(this.nowTime - 86400000)).format('YYYYMMDD')
+      }
     },
     methods: {
       toDetail (detailId) {
@@ -69,5 +94,13 @@
 
 <style lang="sass">
 
+.home-list
+  background-color: rgba(200, 200, 200, 0.1) !important;
+
+  .md-list-item
+    width: 92%;
+    margin-left: 4%;
+    margin-bottom: 12px;
+    background-color: #FFFFFF;
 
 </style>

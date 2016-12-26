@@ -60,13 +60,12 @@ var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsS
 app.use(staticPath, express.static('./static'))
 
 // api begin
-console.log('api')
 app.use(function (req, res, next) {
-    res.set({
-        'Access-Control-Allow-Origin': '*'
-        // 'Content-Type': 'application/json;charset=utf-8'
-    })
-    next()
+  res.set({
+    'Access-Control-Allow-Origin': '*'
+      // 'Content-Type': 'application/json;charset=utf-8'
+  })
+  next()
 })
 
 // api start
