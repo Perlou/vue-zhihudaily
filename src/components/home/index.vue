@@ -7,7 +7,11 @@
     </md-card>
 
     <md-subheader>今日热文</md-subheader>
-    <md-list-item>
+
+    <!-- stories list -->
+
+    <!-- end stories list -->
+<!--     <md-list-item>
       <md-avatar class="md-avatar-icon">
         <md-icon>folder</md-icon>
       </md-avatar>
@@ -20,7 +24,7 @@
       <md-button class="md-icon-button md-list-action">
         <md-icon>info</md-icon>
       </md-button>
-    </md-list-item>
+    </md-list-item> -->
 
   </md-list>
 </template>
@@ -30,8 +34,19 @@
     name: 'home',
     data () {
       return {
-
+        stories: [],
+        topStories: []
       }
+    },
+    created () {
+      // 热文信息
+      this.$http.get('/api/topStory').then(res => {
+        let data = res.body.data
+        this.stories = data.stories
+        this.topStories = data.top_stories
+      }).catch(err => {
+        console.log(err)
+      })
     },
     methods: {
 

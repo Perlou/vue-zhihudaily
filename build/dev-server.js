@@ -59,6 +59,40 @@ app.use(hotMiddleware)
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
+// api begin
+console.log('api')
+app.use(function (req, res, next) {
+    res.set({
+        'Access-Control-Allow-Origin': '*'
+        // 'Content-Type': 'application/json;charset=utf-8'
+    })
+    next()
+})
+
+// api start
+var getListAPI = require('../api/api').getListAPI
+var getHistoryStoryAPI = require('../api/api').getHistoryStoryAPI
+var getDetailAPI = require('../api/api').getDetailAPI
+var getThemesListAPI = require('../api/api').getThemesListAPI
+var getThemeAPI = require('../api/api').getThemeAPI
+
+app.get('/api/topStory', getListAPI)
+app.get('/api/history/*', getHistoryStoryAPI)
+app.get('/api/detail/*', getDetailAPI)
+app.get('/api/themesList', getThemesListAPI)
+app.get('/api/theme/*', getThemeAPI)
+app.get('/api/image', function (req, res) {
+  var superagent = require('superagent')
+  var request = superagent.get(req.query.url)
+  request.pipe(res)
+  request.on('end', function () {})
+})
+
+// api end
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
+
 module.exports = app.listen(port, function (err) {
   if (err) {
     console.log(err)
