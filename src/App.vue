@@ -3,20 +3,6 @@
     <v-side-nav></v-side-nav>
     <v-tool-bar></v-tool-bar>
     <router-view></router-view>
-
-<!--     <div class="bottom-bar">
-
-      <md-bottom-bar md-fixed-bottom>
-
-        <md-bottom-bar-item md-icon="history">
-          <router-link to="/home">首页</router-link>
-        </md-bottom-bar-item>
-        <md-bottom-bar-item md-icon="favorite" md-active>
-          <router-link to="/bar">ui库</router-link>
-        </md-bottom-bar-item>
-      </md-bottom-bar>
-    </div>
- -->
   </div>
 </template>
 

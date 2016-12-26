@@ -7,6 +7,7 @@
               class="swiper-slide"
               @click="toDetail(item.id)">
               <img :src="item.image" alt="img" />
+              <p class="story-title">{{item.title}}</p>
             </div>
         </div>
         <div class="swiper-pagination"></div>
@@ -120,8 +121,24 @@
   height: 220px;
   width: 100%;
 
+  .swiper-slide
+    background: rgba(7, 17, 27, 0.3);
+
   img
-    margin-top: -50px;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    left: 0;
+    top: -50px;
+    z-index: -1;
+
+  .story-title
+    position: absolute;
+    left: 12px;
+    bottom: 20px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
 
   .swiper-pagination-bullet
     width: 6px;

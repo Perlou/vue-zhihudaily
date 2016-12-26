@@ -20,18 +20,18 @@
           </md-menu-content>
         </md-menu>
 
-      <md-dialog md-open-from="#custom" md-close-to="#custom" ref="dialog1">
-        <md-dialog-title>关于作者</md-dialog-title>
+        <md-dialog md-open-from="#custom" md-close-to="#custom" ref="dialog1">
+          <md-dialog-title>关于作者</md-dialog-title>
 
-        <md-dialog-content>
-          Perlou <a href="https://github.com/Perlou">github</a>
-          <p>本应用 API 均由 知乎（Zhihu.Inc） 提供，若被告知需停止共享与使用，本人会及时删除此页面与整个项目</p>
-        </md-dialog-content>
+          <md-dialog-content>
+            Perlou <a href="https://github.com/Perlou">github</a>
+            <p>本应用 API 均由 知乎（Zhihu.Inc） 提供，若被告知需停止共享与使用，本人会及时删除此页面与整个项目</p>
+          </md-dialog-content>
 
-        <md-dialog-actions>
-          <md-button class="md-primary" @click="closeDialog('dialog1')">确认</md-button>
-        </md-dialog-actions>
-      </md-dialog>
+          <md-dialog-actions>
+            <md-button class="md-primary" @click="closeDialog('dialog1')">确认</md-button>
+          </md-dialog-actions>
+        </md-dialog>
 
       </md-toolbar>
     </md-whiteframe>
