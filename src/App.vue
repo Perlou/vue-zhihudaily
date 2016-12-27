@@ -1,29 +1,33 @@
 <template>
   <div class="app-viewport" id="app">
-    <v-side-nav></v-side-nav>
-    <v-tool-bar></v-tool-bar>
+
+    <!-- tool-bar component -->
+    <v-tool-bar
+      @toggle="toggleNav"
+    ></v-tool-bar>
+    <!-- end tool-bar component -->
+
     <router-view></router-view>
   </div>
 </template>
 
 <script>
   import toolBar from 'src/components/toolBar'
-  import sideNav from 'src/components/sideNav'
 
   export default {
     name: 'app',
     data () {
       return {
-
+        toggleBtn: false
       }
     },
     components: {
-      'v-tool-bar': toolBar,
-      'v-side-nav': sideNav
+      'v-tool-bar': toolBar
     },
     methods: {
-      toggleLeftSidenav () {
-        this.$refs.leftSidenav.toggle()
+      toggleNav () {
+        this.toggleBtn = !this.toggleBtn
+        console.log(this.toggleBtn)
       }
     }
   }

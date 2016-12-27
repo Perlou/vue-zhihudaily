@@ -26,3 +26,13 @@ export function getHistoryStory (date) {
     return data.data
   })
 }
+
+// 获取 side-nav 主题列表
+export function getThemesList () {
+  return axios({
+    method: 'GET',
+    url: '/api/themesList'
+  }).then(data => {
+    return data.data
+  })
+}

@@ -12,7 +12,7 @@ import VueResource from 'vue-resource'
 import VueMaterial from 'vue-material'
 
 // view
-import Home from './components/home'
+import Home from './views/home'
 const Bar = { template: '<div>bar</div>' }
 
 // css
@@ -40,7 +40,7 @@ Vue.material.registerTheme({
 
 // router
 const routes = [
-  { path: '/Home', component: Home },
+  { path: '/home', component: Home },
   { path: '/bar', component: Bar }
 ]
 

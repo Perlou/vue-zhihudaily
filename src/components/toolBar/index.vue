@@ -2,7 +2,7 @@
   <div class="tool-bar">
     <md-whiteframe md-elevation="3">
       <md-toolbar>
-        <md-button class="md-icon-button">
+        <md-button class="md-icon-button" @click="toggle">
           <md-icon>menu</md-icon>
         </md-button>
 
@@ -35,19 +35,63 @@
 
       </md-toolbar>
     </md-whiteframe>
+
+    <!-- side-nav -->
+    <md-sidenav class="md-left" ref="leftSidenav">
+      <md-toolbar class="md-account-header">
+        <md-list class="md-transparent">
+          <md-list-item class="md-avatar-list">
+            <md-avatar class="md-large">
+              <img src="https://avatars1.githubusercontent.com/u/12897436" alt="author">
+            </md-avatar>
+
+            <span style="flex: 1"></span>
+
+          </md-list-item>
+
+          <md-list-item>
+            <div class="md-list-text-container">
+              <span>Perlou (FE development engineer)</span>
+              <span>perloukevin@gmail.com</span>
+            </div>
+          </md-list-item>
+        </md-list>
+      </md-toolbar>
+      <md-list>
+        <md-list-item
+          @click="$refs.leftSidenav.toggle()"
+          class="md-primary"
+          :class="'side-list-item'">
+          <span>首页</span><md-icon>home</md-icon>
+        </md-list-item>
+        <md-list-item
+          v-for="item in others"a
+          :class="'side-list-item'">
+          <span>{{item.name}}</span><md-icon>plus</md-icon>
+        </md-list-item>
+      </md-list>
+    </md-sidenav>
+    <!-- end side-nav -->
+
   </div>
-
-
 
 </template>
 
 <script>
+  import * as api from 'src/common/api'
+
   export default {
     name: 'toolbar',
     data () {
       return {
-
+        others: []
       }
+    },
+    created () {
+      api.getThemesList().then(res => {
+        let data = res.data
+        this.others = data.others
+      })
     },
     methods: {
       openDialog (ref) {
@@ -55,6 +99,10 @@
       },
       closeDialog (ref) {
         this.$refs[ref].close()
+      },
+      toggle () {
+        this.$refs.leftSidenav.toggle()
+        // this.$emit('toggle')
       }
     }
   }
@@ -65,5 +113,21 @@
   position: fixed;
   width: 100%;
   z-index: 101;
+
+  .md-sidenav-content
+    position: fixed !important;
+    z-index: 150;
+
+  .md-backdrop
+    position: fixed !important;
+    z-index: 149;
+
+  .side-list-item
+    height: 36px;
+    line-height: 36px;
+
+    .md-list-item-container
+      min-height: 36px;
+
 
 </style>
