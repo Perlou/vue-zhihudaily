@@ -78,34 +78,34 @@
 </template>
 
 <script>
-  import * as api from 'src/common/api'
+import * as api from 'src/common/api'
 
-  export default {
-    name: 'toolbar',
-    data () {
-      return {
-        others: []
-      }
+export default {
+  name: 'toolbar',
+  data () {
+    return {
+      others: []
+    }
+  },
+  created () {
+    api.getThemesList().then(res => {
+      let data = res.data
+      this.others = data.others
+    })
+  },
+  methods: {
+    openDialog (ref) {
+      this.$refs[ref].open()
     },
-    created () {
-      api.getThemesList().then(res => {
-        let data = res.data
-        this.others = data.others
-      })
+    closeDialog (ref) {
+      this.$refs[ref].close()
     },
-    methods: {
-      openDialog (ref) {
-        this.$refs[ref].open()
-      },
-      closeDialog (ref) {
-        this.$refs[ref].close()
-      },
-      toggle () {
-        this.$refs.leftSidenav.toggle()
-        // this.$emit('toggle')
-      }
+    toggle () {
+      this.$refs.leftSidenav.toggle()
+      // this.$emit('toggle')
     }
   }
+}
 </script>
 
 <style lang="sass">

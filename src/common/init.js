@@ -36,16 +36,3 @@ export function getThemesList () {
     return data.data
   })
 }
-
-// 获取详情
-export function getDetail (id) {
-  return axios({
-    method: 'GET',
-    url: '/api/detail/',
-    params: {
-      id: id
-    }
-  }).then(data => {
-    return data.data
-  })
-}

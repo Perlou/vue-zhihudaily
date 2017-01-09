@@ -106,8 +106,7 @@
     },
     methods: {
       toDetail (detailId) {
-        console.log(detailId)
-        // window.location.href = '#/uiLib'
+        window.location.href = `#/detail/${detailId}`
       }
     }
   }
